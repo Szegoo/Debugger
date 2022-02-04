@@ -1,0 +1,16 @@
+{
+  "name": "debugger",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prettier": "prettier --config ./.prettierrc --write \"**/*.{json,md,ts,js}\"",
+    "dev": "npx ts-node ./src/index"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "prettier": "^2.5.1"
+  }
+}
