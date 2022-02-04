@@ -2,11 +2,12 @@
   "name": "debugger",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./dist/lib/index.js",
   "scripts": {
     "prettier": "prettier --config ./.prettierrc --write \"**/*.{json,md,ts,js}\"",
     "dev": "npx ts-node ./src/index",
-    "commit": "./src/scripts/commit.sh"
+    "commit": "./src/scripts/commit.sh",
+    "dist": "tsc"
   },
   "keywords": [],
   "author": "",
