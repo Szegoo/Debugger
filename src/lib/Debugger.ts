@@ -1,11 +1,13 @@
 import CallData from "./CallData";
+import CodeParser from "./CodeParser";
 
 class Debugger {
   private message: string;
   private parentFn: any;
   private e: Error;
+  private codeParser: CodeParser;
 
-  public debug(parentFn: any, message?: string): void {
+  public debug(parentFn: any, message: string = ""): void {
     this.e = new Error();
     this.initializeDebugger(parentFn, message);
     const data = this.extractCallData();
@@ -15,6 +17,7 @@ class Debugger {
   private initializeDebugger(parentFn: any, message?: string) {
     this.parentFn = parentFn;
     this.message = message;
+    this.codeParser = new CodeParser();
   }
 
   private extractCallData(): CallData {
@@ -22,6 +25,7 @@ class Debugger {
     const grandparent = this.getGrandParentFunctionName();
     const lineNumber = this.getLineNumber();
     const parentCode = this.getFunctionCode();
+    this.codeParser.parse(parentCode, this.message, parent);
     return new CallData(
       parent,
       parentCode,

@@ -10,7 +10,9 @@
     "dist": "tsc"
   },
   "keywords": [
-    "debug", "log", "debugger"
+    "debug",
+    "log",
+    "debugger"
   ],
   "author": "",
   "license": "ISC",
