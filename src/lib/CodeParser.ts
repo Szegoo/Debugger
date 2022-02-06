@@ -10,11 +10,11 @@ class CodeParser {
     this.code = code;
     this.message = message;
     this.functionName = functionName;
-    this.findFunctionCall();
+    this.generateInfo();
     return this.info;
   }
 
-  private findFunctionCall() {
+  private generateInfo() {
     this.getCallIndx();
     this.getCallInfo();
   }
@@ -43,12 +43,38 @@ class CodeParser {
 
   private addBlockToInfo(i, numberOfBrackets) {
     if (numberOfBrackets !== 1) {
-      const closingBracket = this.findClosingBracket(i);
-      if (this.isCallInBlock(i, closingBracket)) {
-        const newInfo = this.getBlockStatement(i);
-        this.info += newInfo + ":";
+      this.getNewInfo(i);
+    }
+  }
+
+  private getNewInfo(i: number) {
+    const closingBracket = this.findClosingBracket(i);
+    if (this.isCallInBlock(i, closingBracket)) {
+      const newInfo = this.getBlockStatement(i);
+      this.info += newInfo + ":";
+    }
+  }
+
+  private findClosingBracket(startingIndx: number): number {
+    let openingBrackets = 0;
+    for (let i = startingIndx + 1; i < this.code.length - 1; i++) {
+      openingBrackets = this.calculateOpeningBrackets(openingBrackets, i);
+      if (this.isClosing(i) && openingBrackets <= 0) {
+        openingBrackets = 0;
+        return i;
+      }
+      if (this.isClosing(i)) {
+        if (openingBrackets !== 0) openingBrackets--;
       }
     }
+    throw new Error("Could not find closing bracket!");
+  }
+
+  private isCallInBlock(
+    openingBracket: number,
+    closingBracket: number,
+  ): boolean {
+    return this.callIndex > openingBracket && this.callIndex < closingBracket;
   }
 
   private getBlockStatement(openingBracket: number): string {
@@ -65,35 +91,19 @@ class CodeParser {
     return lastStatement;
   }
 
-  private findClosingBracket(startingIndx: number): number {
-    let openingBrackets = 0;
-    for (let i = startingIndx + 1; i < this.code.length - 1; i++) {
-      if (this.isOpening(i)) {
-        openingBrackets++;
-      }
-      if (this.isClosing(i) && openingBrackets === 0) {
-        return i;
-      }
-      if (this.isClosing(i)) {
-        openingBrackets--;
-      }
+  private calculateOpeningBrackets(openingBrackets: number, i: number): number {
+    if (this.isOpening(i)) {
+      openingBrackets++;
     }
-    throw new Error("Could not find closing bracket!");
+    return openingBrackets;
   }
 
-  private isOpening(i): boolean {
+  private isOpening(i: number): boolean {
     return this.code.charAt(i) === "{";
   }
 
-  private isClosing(i): boolean {
+  private isClosing(i: number): boolean {
     return this.code.charAt(i) === "}";
-  }
-
-  private isCallInBlock(
-    openingBracket: number,
-    closingBracket: number,
-  ): boolean {
-    return this.callIndex > openingBracket && this.callIndex < closingBracket;
   }
 }
 

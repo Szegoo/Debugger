@@ -1,5 +1,6 @@
 import Debugger from "./lib/Debugger";
 
+//this function is made to test the code
 function test() {
   const dbgr = new Debugger();
   if (1 === 1) {
