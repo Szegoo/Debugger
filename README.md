@@ -17,5 +17,8 @@ function test() {
 }
 ```
 
-The future versions will have more details about the function call like in which
-block of code is the debug function called.
+The output:
+
+```
+{parent_function}:{function_name}:{line_number}::{conditional_statements}: {message}
+```
