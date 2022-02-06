@@ -25,13 +25,14 @@ class Debugger {
     const grandparent = this.getGrandParentFunctionName();
     const lineNumber = this.getLineNumber();
     const parentCode = this.getFunctionCode();
-    this.codeParser.parse(parentCode, this.message, parent);
+    const info = this.codeParser.parse(parentCode, this.message, parent);
     return new CallData(
       parent,
       parentCode,
       grandparent,
       lineNumber,
       this.message,
+      info,
     );
   }
 

@@ -4,6 +4,7 @@ class CallData {
   private grandparent: string;
   private lineNumber: string;
   private message: string;
+  private info: string;
 
   public constructor(
     parent: string,
@@ -11,12 +12,14 @@ class CallData {
     grandparent: string,
     lineNumber: string,
     message: string,
+    info: string,
   ) {
     this.parent = parent;
     this.parentCode = parentCode;
     this.grandparent = grandparent;
     this.lineNumber = lineNumber;
     this.message = message;
+    this.info = info;
   }
 
   public getParent(): string {
@@ -37,7 +40,7 @@ class CallData {
 
   public logData(): void {
     console.log(
-      `${this.grandparent}:${this.parent}:${this.lineNumber} ${this.message}`,
+      `${this.grandparent}:${this.parent}:${this.lineNumber}::${this.info} ${this.message}`,
     );
   }
 }
