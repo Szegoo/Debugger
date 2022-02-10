@@ -20,9 +20,14 @@ class CodeParser {
   }
 
   private getCallIndx(): number {
-    const pattern = new RegExp(
-      `debug\\(${this.functionName}, ("|'|\`)${this.message}("|'|\`)\\)`,
-    );
+    let pattern;
+    if (this.message === "") {
+      pattern = new RegExp(`debug\\(${this.functionName}\\)`);
+    } else {
+      pattern = new RegExp(
+        `debug\\(${this.functionName}, ("|'|\`)${this.message}("|'|\`)\\)`,
+      );
+    }
     const match = pattern.exec(this.code);
     if (match) {
       this.callIndex = match.index;

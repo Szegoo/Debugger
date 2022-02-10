@@ -1,6 +1,5 @@
 import Debugger from "./lib/Debugger";
 
-//this function is made to test the code
 function test() {
   const dbgr = new Debugger();
   if (1 === 1) {
@@ -10,11 +9,10 @@ function test() {
     }
     if (0 === 0) {
       while (br < 5) {
-        dbgr.debug(test, "hello");
+        dbgr.debug(test);
         br++;
       }
     }
   }
 }
-
 test();
