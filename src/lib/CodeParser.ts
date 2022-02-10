@@ -20,20 +20,22 @@ class CodeParser {
   }
 
   private getCallIndx(): number {
-    let pattern;
-    if (this.message === "") {
-      pattern = new RegExp(`debug\\(${this.functionName}\\)`);
-    } else {
-      pattern = new RegExp(
-        `debug\\(${this.functionName}, ("|'|\`)${this.message}("|'|\`)\\)`,
-      );
-    }
+    const pattern = this.getParentRegex();
     const match = pattern.exec(this.code);
     if (match) {
       this.callIndex = match.index;
       return;
     }
     throw new Error("Could not find function call!");
+  }
+
+  private getParentRegex() {
+    if (this.message === "") {
+      return new RegExp(`debug\\(${this.functionName}\\)`);
+    }
+    return new RegExp(
+      `debug\\(${this.functionName}, ("|'|\`)${this.message}("|'|\`)\\)`,
+    );
   }
 
   private getCallInfo() {
@@ -75,6 +77,13 @@ class CodeParser {
     throw new Error("Could not find closing bracket!");
   }
 
+  private calculateOpeningBrackets(openingBrackets: number, i: number): number {
+    if (this.isOpening(i)) {
+      openingBrackets++;
+    }
+    return openingBrackets;
+  }
+
   private isCallInBlock(
     openingBracket: number,
     closingBracket: number,
@@ -94,13 +103,6 @@ class CodeParser {
       }
     });
     return lastStatement;
-  }
-
-  private calculateOpeningBrackets(openingBrackets: number, i: number): number {
-    if (this.isOpening(i)) {
-      openingBrackets++;
-    }
-    return openingBrackets;
   }
 
   private isOpening(i: number): boolean {
