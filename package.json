@@ -5,7 +5,7 @@
   "main": "./dist/lib/index.js",
   "scripts": {
     "prettier": "prettier --config ./.prettierrc --write \"**/*.{json,md,ts,js}\"",
-    "test": "npx ts-node ./src/index",
+    "test": "jest",
     "commit": "./src/scripts/commit.sh",
     "dist": "tsc"
   },
@@ -19,6 +19,7 @@
   "devDependencies": {
     "@types/jest": "^27.4.0",
     "jest": "^27.5.1",
-    "prettier": "^2.5.1"
+    "prettier": "^2.5.1",
+    "ts-jest": "^27.1.3"
   }
 }

@@ -3,6 +3,7 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "esModuleInterop": true,
-    "outDir": "dist"
+    "outDir": "dist",
+    "target": "ES6"
   }
 }
