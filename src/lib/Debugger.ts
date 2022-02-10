@@ -1,11 +1,18 @@
 import CallData from "./CallData";
 import CodeParser from "./CodeParser";
+import Logger from "./log/Logger";
+import ConsoleLogger from "./log/ConsoleLogger";
 
 class Debugger {
   private message: string;
   private parentFn: any;
   private e: Error;
   private codeParser: CodeParser;
+  private logger: Logger;
+
+  constructor(logger: Logger = new ConsoleLogger()) {
+    this.logger = logger;
+  }
 
   public debug(parentFn: any, message: string = ""): void {
     this.e = new Error();
@@ -33,6 +40,7 @@ class Debugger {
       lineNumber,
       this.message,
       info,
+      this.logger,
     );
   }
 

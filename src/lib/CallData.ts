@@ -1,3 +1,5 @@
+import Logger from "./log/Logger";
+
 class CallData {
   private parent: string;
   private parentCode: string;
@@ -5,6 +7,7 @@ class CallData {
   private lineNumber: string;
   private message: string;
   private info: string;
+  private logger: Logger;
 
   public constructor(
     parent: string,
@@ -13,6 +16,7 @@ class CallData {
     lineNumber: string,
     message: string,
     info: string,
+    logger: Logger,
   ) {
     this.parent = parent;
     this.parentCode = parentCode;
@@ -20,6 +24,7 @@ class CallData {
     this.lineNumber = lineNumber;
     this.message = message;
     this.info = info;
+    this.logger = logger;
   }
 
   public getParent(): string {
@@ -39,7 +44,7 @@ class CallData {
   }
 
   public logData(): void {
-    console.log(
+    this.logger.log(
       `${this.grandparent}:${this.parent}:${this.lineNumber}::${this.info} ${this.message}`,
     );
   }
