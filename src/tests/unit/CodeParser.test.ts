@@ -22,6 +22,9 @@ describe("CodeParser unit test", () => {
     it("should throw an error given invalid function call", () => {
       expect(() => parse(3)).toThrow("Could not find function call!");
     });
+    it("should throw an error when bracket is not closed", () => {
+      expect(() => parse(4)).toThrow("Could not find closing bracket!");
+    });
   });
 });
 
@@ -75,6 +78,16 @@ const data = [
     code: `function f2() {
         const deb = new Debugger();
         deb.debug(f3);
+    }`,
+    functionName: "f2",
+    message: "",
+  },
+  {
+    code: `function f2() {
+        const deb = new Debugger();
+        if(1 === 1) {
+          deb.debug(f2);
+ 
     }`,
     functionName: "f2",
     message: "",

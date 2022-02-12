@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1644693718065" clover="3.2.0">
+  <project timestamp="1644693718065" name="All files">
+    <metrics statements="71" coveredstatements="71" conditionals="14" coveredconditionals="14" methods="23" coveredmethods="23" elements="108" coveredelements="108" complexity="0" loc="71" ncloc="71" packages="2" files="3" classes="3"/>
+    <package name="lib">
+      <metrics statements="67" coveredstatements="67" conditionals="14" coveredconditionals="14" methods="21" coveredmethods="21"/>
+      <file name="CallData.ts" path="/home/sergej/Debugger/src/lib/CallData.ts">
+        <metrics statements="13" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="6"/>
+        <line num="21" count="5" type="stmt"/>
+        <line num="22" count="5" type="stmt"/>
+        <line num="23" count="5" type="stmt"/>
+        <line num="24" count="5" type="stmt"/>
+        <line num="25" count="5" type="stmt"/>
+        <line num="26" count="5" type="stmt"/>
+        <line num="27" count="5" type="stmt"/>
+        <line num="31" count="1" type="stmt"/>
+        <line num="35" count="1" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
+        <line num="43" count="1" type="stmt"/>
+        <line num="47" count="1" type="stmt"/>
+        <line num="53" count="1" type="stmt"/>
+      </file>
+      <file name="CodeParser.ts" path="/home/sergej/Debugger/src/lib/CodeParser.ts">
+        <metrics statements="54" coveredstatements="54" conditionals="14" coveredconditionals="14" methods="15" coveredmethods="15"/>
+        <line num="2" count="5" type="stmt"/>
+        <line num="7" count="5" type="stmt"/>
+        <line num="10" count="5" type="stmt"/>
+        <line num="11" count="5" type="stmt"/>
+        <line num="12" count="5" type="stmt"/>
+        <line num="13" count="5" type="stmt"/>
+        <line num="14" count="3" type="stmt"/>
+        <line num="18" count="5" type="stmt"/>
+        <line num="19" count="4" type="stmt"/>
+        <line num="23" count="5" type="stmt"/>
+        <line num="24" count="5" type="stmt"/>
+        <line num="25" count="5" type="cond" truecount="1" falsecount="0"/>
+        <line num="26" count="4" type="stmt"/>
+        <line num="27" count="4" type="stmt"/>
+        <line num="29" count="1" type="stmt"/>
+        <line num="33" count="5" type="cond" truecount="1" falsecount="0"/>
+        <line num="34" count="3" type="stmt"/>
+        <line num="36" count="2" type="stmt"/>
+        <line num="42" count="4" type="stmt"/>
+        <line num="43" count="4" type="stmt"/>
+        <line num="44" count="603" type="cond" truecount="1" falsecount="0"/>
+        <line num="45" count="9" type="stmt"/>
+        <line num="46" count="9" type="stmt"/>
+        <line num="52" count="9" type="cond" truecount="1" falsecount="0"/>
+        <line num="53" count="5" type="stmt"/>
+        <line num="58" count="5" type="stmt"/>
+        <line num="59" count="4" type="cond" truecount="1" falsecount="0"/>
+        <line num="60" count="3" type="stmt"/>
+        <line num="61" count="3" type="stmt"/>
+        <line num="66" count="5" type="stmt"/>
+        <line num="67" count="5" type="stmt"/>
+        <line num="68" count="553" type="stmt"/>
+        <line num="69" count="553" type="cond" truecount="3" falsecount="0"/>
+        <line num="70" count="4" type="stmt"/>
+        <line num="71" count="4" type="stmt"/>
+        <line num="73" count="549" type="cond" truecount="1" falsecount="0"/>
+        <line num="74" count="4" type="cond" truecount="1" falsecount="0"/>
+        <line num="77" count="1" type="stmt"/>
+        <line num="81" count="553" type="cond" truecount="1" falsecount="0"/>
+        <line num="82" count="4" type="stmt"/>
+        <line num="84" count="553" type="stmt"/>
+        <line num="91" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="95" count="3" type="stmt"/>
+        <line num="96" count="3" type="stmt"/>
+        <line num="97" count="3" type="stmt"/>
+        <line num="98" count="3" type="stmt"/>
+        <line num="99" count="9" type="stmt"/>
+        <line num="100" count="9" type="cond" truecount="1" falsecount="0"/>
+        <line num="101" count="4" type="stmt"/>
+        <line num="102" count="4" type="stmt"/>
+        <line num="105" count="3" type="stmt"/>
+        <line num="109" count="1156" type="stmt"/>
+        <line num="113" count="1102" type="stmt"/>
+        <line num="117" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="lib.log">
+      <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <file name="FileLogger.ts" path="/home/sergej/Debugger/src/lib/log/FileLogger.ts">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="5" count="6" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>
