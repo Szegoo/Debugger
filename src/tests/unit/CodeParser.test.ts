@@ -19,6 +19,9 @@ describe("CodeParser unit test", () => {
       const response = parse(2);
       expect(response).toBe("");
     });
+    it("should throw an error given invalid function call", () => {
+      expect(() => parse(3)).toThrow("Could not find function call!");
+    });
   });
 });
 
@@ -64,6 +67,14 @@ const data = [
     code: `function f2() {
         const deb = new Debugger();
         deb.debug(f2);
+    }`,
+    functionName: "f2",
+    message: "",
+  },
+  {
+    code: `function f2() {
+        const deb = new Debugger();
+        deb.debug(f3);
     }`,
     functionName: "f2",
     message: "",
