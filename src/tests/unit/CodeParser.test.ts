@@ -1,39 +1,34 @@
 import CodeParser from "../../lib/CodeParser";
 
+let codeParser: CodeParser;
+
 describe("CodeParser unit test", () => {
-  let codeParser: CodeParser;
   beforeEach(() => {
     codeParser = new CodeParser();
   });
   describe("code parsing", () => {
     it("should parse code num. 1", () => {
-      const response = codeParser.parse(
-        data[0].code,
-        data[0].message,
-        data[0].functionName,
-      );
+      const response = parse(0);
       expect(response).toBe("");
     });
     it("should parse code num. 2", () => {
-      const response = codeParser.parse(
-        data[1].code,
-        data[1].message,
-        data[1].functionName,
-      );
-      console.log(response);
+      const response = parse(1);
       expect(response).toBe("if:if:while:");
     });
     it("should parse code num. 3", () => {
-      const response = codeParser.parse(
-        data[2].code,
-        data[2].message,
-        data[2].functionName,
-      );
-      console.log(response);
+      const response = parse(2);
       expect(response).toBe("");
     });
   });
 });
+
+function parse(dataIndx: number) {
+  return codeParser.parse(
+    data[dataIndx].code,
+    data[dataIndx].message,
+    data[dataIndx].functionName,
+  );
+}
 
 const data = [
   {
