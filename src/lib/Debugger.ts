@@ -2,6 +2,7 @@ import CallData from "./CallData";
 import CodeParser from "./CodeParser";
 import Logger from "./log/Logger";
 import ConsoleLogger from "./log/ConsoleLogger";
+import { ICallData } from "./CallData";
 
 class Debugger {
   private message: string;
@@ -28,20 +29,25 @@ class Debugger {
   }
 
   private extractCallData(): CallData {
+    const callData = this.getCallData();
+    return new CallData(callData);
+  }
+
+  private getCallData(): ICallData {
     const parent = this.getParentFunctionName();
     const grandparent = this.getGrandParentFunctionName();
     const lineNumber = this.getLineNumber();
     const parentCode = this.getFunctionCode();
     const info = this.codeParser.parse(parentCode, this.message, parent);
-    return new CallData(
+    return {
+      message: this.message,
       parent,
-      parentCode,
       grandparent,
       lineNumber,
-      this.message,
+      parentCode,
       info,
-      this.logger,
-    );
+      logger: this.logger,
+    };
   }
 
   private getParentFunctionName(): string {

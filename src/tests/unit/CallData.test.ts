@@ -43,15 +43,15 @@ describe("CallData unit test", () => {
 });
 
 function instantiateDummy(): CallData {
-  const instance = new CallData(
-    "parent",
-    "",
-    "grandparent",
-    "12",
-    "hello1",
-    "",
-    new Logger(),
-  );
+  const instance = new CallData({
+    parent: "parent",
+    parentCode: "",
+    grandparent: "grandparent",
+    lineNumber: "12",
+    message: "hello1",
+    info: "",
+    logger: new Logger(),
+  });
   return instance;
 }
 
