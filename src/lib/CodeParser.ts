@@ -23,19 +23,27 @@ class CodeParser {
     const pattern = this.getParentRegex();
     const match = pattern.exec(this.code);
     if (match) {
+      this.isCallUnique(pattern);
       this.callIndex = match.index;
       return;
     }
     throw new Error("Could not find function call!");
   }
 
-  private getParentRegex() {
+  private getParentRegex(): RegExp {
     if (this.message === "") {
-      return new RegExp(`debug\\(${this.functionName}\\)`);
+      return new RegExp(`debug\\(${this.functionName}\\)`, "g");
     }
     return new RegExp(
       `debug\\(${this.functionName}, ("|'|\`)${this.message}("|'|\`)\\)`,
+      "g",
     );
+  }
+
+  private isCallUnique(pattern: RegExp) {
+    if (this.code.match(pattern).length > 1) {
+      throw new Error("Two or more function calls are the same!");
+    }
   }
 
   private getCallInfo() {

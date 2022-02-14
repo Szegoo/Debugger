@@ -12,6 +12,7 @@ function test() {
         dbgr.debug(test);
         br++;
       }
+      dbgr.debug(test);
     }
   }
 }
