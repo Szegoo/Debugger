@@ -21,8 +21,7 @@ describe("Debugger unit test", () => {
   it("should pass given console logger", () => {
     console.log = jest.fn();
     test1(new Debugger());
-    //@ts-ignore
-    expect(console.log.mock.calls[0][0]).toBe("#:test1:4:: hello");
+    expect(getConsoleLog()).toBe("#:test1:4:: hello");
   });
   it("should pass without message", () => {
     test3(dbgr);
@@ -34,4 +33,9 @@ describe("Debugger unit test", () => {
 function getLog(): string {
   const log = fs.readFileSync("log.txt", { encoding: "utf8" });
   return log;
+}
+
+function getConsoleLog(): string {
+  //@ts-ignore
+  return console.log.mock.calls[0][0];
 }

@@ -1,8 +1,8 @@
-import CallData from "../../lib/CallData";
+import CallData, { ICallData } from "../../lib/CallData";
 import Logger from "../../lib/log/FileLogger";
 import fs from "fs";
 
-const dummyData = {
+const dummyData: ICallData = {
   parent: "parent",
   parentCode: "",
   grandparent: "grandparent",
@@ -43,15 +43,7 @@ describe("CallData unit test", () => {
 });
 
 function instantiateDummy(): CallData {
-  const instance = new CallData({
-    parent: "parent",
-    parentCode: "",
-    grandparent: "grandparent",
-    lineNumber: "12",
-    message: "hello1",
-    info: "",
-    logger: new Logger(),
-  });
+  const instance = new CallData(dummyData);
   return instance;
 }
 
