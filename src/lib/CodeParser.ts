@@ -3,7 +3,6 @@ class CodeParser {
   private code: string;
   private message: string;
   private functionName: string;
-  private callIndex: number;
   private info: string = "";
 
   public parse(code: string, message: string, functionName: string): string {
@@ -15,8 +14,8 @@ class CodeParser {
   }
 
   private generateInfo() {
-    this.getCallIndx();
-    this.getCallInfo();
+    const indx = this.getCallIndx();
+    this.getCallInfo(indx);
   }
 
   private getCallIndx(): number {
@@ -24,8 +23,7 @@ class CodeParser {
     const match = pattern.exec(this.code);
     if (match) {
       this.isCallUnique(pattern);
-      this.callIndex = match.index;
-      return;
+      return match.index;
     }
     throw new Error("Could not find function call!");
   }
@@ -46,25 +44,25 @@ class CodeParser {
     }
   }
 
-  private getCallInfo() {
+  private getCallInfo(callIndx: number) {
     let numberOfBrackets = 0;
     for (let i = 0; i < this.code.length; i++) {
       if (this.isOpening(i)) {
         numberOfBrackets++;
-        this.addBlockToInfo(i, numberOfBrackets);
+        this.addBlockToInfo(i, numberOfBrackets, callIndx);
       }
     }
   }
 
-  private addBlockToInfo(i, numberOfBrackets) {
+  private addBlockToInfo(i, numberOfBrackets, callIndx: number) {
     if (numberOfBrackets !== 1) {
-      this.getNewInfo(i);
+      this.getNewInfo(i, callIndx);
     }
   }
 
-  private getNewInfo(i: number) {
+  private getNewInfo(i: number, callIndx: number) {
     const closingBracket = this.findClosingBracket(i);
-    if (this.isCallInBlock(i, closingBracket)) {
+    if (this.isCallInBlock(i, closingBracket, callIndx)) {
       const newInfo = this.getBlockStatement(i);
       this.info += newInfo + ":";
     }
@@ -95,8 +93,9 @@ class CodeParser {
   private isCallInBlock(
     openingBracket: number,
     closingBracket: number,
+    callIndx: number,
   ): boolean {
-    return this.callIndex > openingBracket && this.callIndex < closingBracket;
+    return callIndx > openingBracket && callIndx < closingBracket;
   }
 
   private getBlockStatement(openingBracket: number): string {
